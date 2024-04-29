@@ -14,7 +14,7 @@ app = FastAPI(
 )
 
 app.include_router(emailer)
-# app.include_router(profile)
+app.include_router(profile)
 
 app.add_middleware(
     CORSMiddleware,
