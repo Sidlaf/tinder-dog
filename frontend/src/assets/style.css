@@ -1,16 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
-p{
-    font-family: 'Jost', sans-serif;
-    text-align: center;
-    margin-top: auto;
-    font-size: 36px;
+p {
+  font-family: 'Jost', sans-serif;
+  text-align: center;
+  margin-top: auto;
+  font-size: 36px;
 }
 
-/* button{
-    font-family: 'Jost', sans-serif;
-    font-size: 70px;
-    margin: 4px 2px;
-    padding: 20px 50px;
-    border-radius: 100%;
-} */
+* {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
