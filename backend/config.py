@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+import secrets
 import os
 
 load_dotenv()
@@ -11,7 +12,10 @@ SERVER_HOST = "127.0.0.1"
 SERVER_PORT = 8000
 
 #token
-ACCESS_TOKEN_EXPIRE_SECONDS = 3600
+ACCESS_TOKEN_EXPIRE_SECONDS: int = 60 * 30
+REFRESH_TOKEN_EXPIRE_SECONDS: int = 60 * 60 * 24 * 30
+SECRET_KEY = str = secrets.token_urlsafe(32)
+JWT_ALGORITHM = "HS256"
 
 #PostgreSQL
 DB_HOST =  os.environ.get("DB_HOST")
