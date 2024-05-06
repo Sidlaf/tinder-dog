@@ -13,7 +13,7 @@
                 <p class="heading">Фамилия</p>
                 <input class="input" type="text" placeholder="Введите фамилию" />
                 <p class="heading">Город</p>
-                <select class="input--select" v-model="selected" style="margin-left: 10px">
+                <select class="input--select" v-model="selected">
                     <option disabled value="">Выберите город</option>
                     <option>Томск</option>
                     <option>Новосибирск</option>
@@ -36,7 +36,9 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
+const selected = ref('')
 // export default{
 //     data(){
 //         return{
