@@ -13,7 +13,13 @@
                 <p class="heading">Фамилия</p>
                 <input class="input" type="text" placeholder="Введите фамилию" />
                 <p class="heading">Город</p>
-                <input class="input__arrow" type="text" placeholder="Выберите город" />
+                <select class="input--select" v-model="selected" style="margin-left: 10px">
+                    <option disabled value="">Выберите город</option>
+                    <option>Томск</option>
+                    <option>Новосибирск</option>
+                    <option>Красноярск</option>
+                </select>
+            
                 <p class="heading">Email</p>
                 <input class="input" type="text" placeholder="Введите электронную почту" />
                 <button class="btn" @click="createAccount">Создать аккаунт</button>
@@ -94,16 +100,14 @@
     background: url('./../assets/pencil.svg') no-repeat 320px white;
 }
 
-.input__arrow{
+.input--select{
     width: 368px;
     height: 48px;
     border-radius: 7px;
     border-color: 1px #5B5B5B;
     padding: 10px;
     font-size: 16px;
-    background: url('./../assets/Vector.svg') no-repeat 320px white;
 }
-
 .btn{
     font-family: 'Jost', sans-serif;
     width: 368px;

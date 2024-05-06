@@ -1,4 +1,4 @@
-
+npm
 <template> 
     <div class="page-profile">
         <button class="btn-go" @click="goBack">
