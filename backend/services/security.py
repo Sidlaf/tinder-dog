@@ -28,3 +28,12 @@ def create_refresh_token(*, subject: Union[str, Any], expires_delta: timedelta =
     to_encode = {"exp": expire, "sub": str(subject), "refresh": True}
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=JWT_ALGORITHM)
     return encoded_jwt
+
+def create_access_token(*, subject: Union[str, Any], expires_delta: timedelta = None, force_totp: bool = False) -> str:
+    if expires_delta:
+        expire = datetime.now(datetime.UTC) + expires_delta
+    else:
+        expire = datetime.now(datetime.UTC) + timedelta(seconds=ACCESS_TOKEN_EXPIRE_SECONDS)
+    to_encode = {"exp": expire, "sub": str(subject), "totp": force_totp}
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=JWT_ALGORITHM)
+    return encoded_jwt

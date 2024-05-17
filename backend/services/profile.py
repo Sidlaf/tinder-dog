@@ -1,6 +1,6 @@
 import boto3
 import config
-from schemas.user_schemas import UserCreate, BaseUser
+# from schemas.user import UserCreate, BaseUser
 from database import tables
 from database.db import get_session
 from sqlalchemy.orm import Session
@@ -26,12 +26,12 @@ class ProfileService:
         )
         return
     
-    def create_user(self, user_data: UserCreate):
-        user = tables.User(
-            email=user_data.email,
-            username = user_data.username,
-            password = user_data.password
-        )
-        self.session.add(user)
-        self.session.commit()
-        return user
+    # def create_user(self, user_data: UserCreate):
+    #     user = tables.User(
+    #         email=user_data.email,
+    #         username = user_data.username,
+    #         password = user_data.password
+    #     )
+    #     self.session.add(user)
+    #     self.session.commit()
+    #     return user

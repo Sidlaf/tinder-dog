@@ -8,18 +8,18 @@ router = APIRouter(
     tags=['Авторизация'],
     )
 
-@router.post('/magic/{email}', status_code=WebToken)
+@router.post('/magic/{email}', response_model=WebToken)
 def login_with_magic_link(
     email: str,
-    auth_service: AuthService
-):
+    auth_service: AuthService = Depends()):
+
     return auth_service.login_with_magic_link(email)
 
 @router.post("/claim", response_model=Token)
 def validate_magic_link(
     web_token: WebToken,
     magic_in: Annotated[bool, Depends(get_magic_token)],
-    auth_service: AuthService
+    auth_service: AuthService = Depends()
 ):
     return auth_service.validate_magic_link(web_token, magic_in)
   

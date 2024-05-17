@@ -4,6 +4,7 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt
 from pydantic import ValidationError
+from schemas.user import UserCreate, User
 from sqlalchemy.orm import Session
 
 from schemas.token import MagicTokenPayload
@@ -22,3 +23,6 @@ def get_magic_token(token: Annotated[str, Depends(oauth2_scheme)]) -> MagicToken
             detail="Could not validate credentials",
         )
     return token_data
+
+def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
+    return 

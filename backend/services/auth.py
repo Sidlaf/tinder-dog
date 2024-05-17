@@ -1,21 +1,20 @@
-import crud_user
-import crud_token
-import security
-import email_service
+import services.crud_user as crud_user
+import services.crud_token as crud_token
+import services.security as security
+import services.email_service as email_service
 from schemas.user import UserCreate, User
 from database.db import get_session
 from sqlalchemy.orm import Session
 from fastapi import Depends, HTTPException
-from schemas.token import WebToken, Token
-from typing import Annotated
-from deps import get_magic_token
+from services.deps import get_magic_token
 
 class AuthService:
     def __init__(self,session: Session = Depends(get_session)):
         self.session = session
 
     def login_with_magic_link(self, email:str):
-        user = crud_user.get_by_email(self.session, email=email)
+        user = crud_user.get_by_email(session=self.session, email=email)
+        user = None
         if not user:
             user_in = UserCreate(**{"email": email})
             user = crud_user.create(self.session, obj_in=user_in)

@@ -9,10 +9,10 @@ from sqlalchemy.orm import Session
 
 
 def get_by_id(session: Session, id: Any):
-    return session.query(User).filter(User.id == id).first()
+    return session.query(tables.User).filter(tables.User.id == id).first()
 
 def get_by_email(session: Session, email: str) -> Optional[User]:
-    return session.query(User).filter(User.email == email).first()
+    return session.query(tables.User).filter(tables.User.email == email).first()
 
 def create(session: Session, obj_in: UserCreate) -> User:
     db_obj = User(
@@ -26,7 +26,7 @@ def create(session: Session, obj_in: UserCreate) -> User:
 def is_active(user: User) -> bool:
     return user.is_active
 
-def validate_email(self, session: Session, db_obj: User) -> User:
+def validate_email(self, session: Session, db_obj: tables.User) -> tables.User:
     setattr(db_obj, "email_validated", True)
     session.add(db_obj)
     session.commit()
