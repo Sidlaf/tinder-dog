@@ -1,26 +1,10 @@
-<script>
-import filterCard from './filterCard.vue'
-export default {
-  components: { filterCard }
-}
-</script>
+<script></script>
 
 <template>
-  <div class="backCard">
-    <filterCard></filterCard>
-    <div class="card"></div>
-    <filterCard style="visibility: hidden"></filterCard>
-  </div>
+  <div class="card"></div>
 </template>
 
-<style scoped>
-.backCard {
-  width: 100%;
-  display: flex;
-  margin-top: 30px;
-  justify-content: space-between;
-  /* align-items: center; */
-}
+<style>
 .card {
   background-image: url('../assets/image.png');
   background-size: cover;

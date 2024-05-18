@@ -1,9 +1,21 @@
 import { createApp } from 'vue'
-import App from './pages/Feed/App.vue'
-import router from './router';
+import FeedPage from './pages/FeedPage.vue'
+import NewDog from './pages/NewDog.vue'
+import App from './App.vue'
+// import router from './router.js'
+import { createMemoryHistory, createRouter } from 'vue-router'
 
+const routes = [
+  { path: '/', component: FeedPage },
+  { path: '/newdog', component: NewDog }
+]
 
-const app = createApp(App);
-app.use(router);
-app.mount('#app');
-import './assets/style.css' 
+const router = createRouter({
+  history: createMemoryHistory(),
+  routes
+})
+
+const app = createApp(App)
+app.use(router)
+app.mount('#app')
+import './assets/style.css'
