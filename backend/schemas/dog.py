@@ -1,21 +1,31 @@
-from typing import Optional, List
-from uuid import UUID
-from pydantic import BaseModel, EmailStr
-from typing_extensions import Annotated
+from pydantic import BaseModel
+from typing import Optional
+from enum import Enum
 
-class DogBase(BaseModel):
+
+class DogCreate(BaseModel):
     name: str
-    is_male: bool
+    sex: str
     age: int
     breed: str
-    tags: List[str]
-    photo_url: str
+    tags: Optional[list[str]]
+    description: Optional[str]
 
-class Dog(DogBase):
-    description: str
+class DogUpdate(DogCreate):
+    pass
+
+class Dog(DogCreate):
+    photo_url: str
     is_premium: bool
 
-class DogCreate(DogBase):
-    pass
-class DogUpdate(Dog):
-    pass
+class Tag(str, Enum):
+    PASSPORT = "Паспорт"
+    VACCINATION = "Сделаны прививки"
+
+class Breed(str, Enum):
+    AKITA = "Акита"
+    HUSKY = "Хаски"
+
+class Sex(str, Enum):
+    MALE = "Самец"
+    FEMALE = "Самка"

@@ -1,48 +1,46 @@
-from sqlalchemy import ForeignKey
-from datetime import datetime
-from sqlalchemy.orm import Mapped, relationship
-from sqlalchemy import String
-from sqlalchemy.orm import mapped_column
-from sqlalchemy.orm import declarative_base
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import Column, String, Integer, Boolean, ARRAY, ForeignKey
+from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.types import UUID, JSON
 from uuid import uuid4
+
 
 Base = declarative_base()
 
 class User(Base):
-     __tablename__ = 'user'
+    __tablename__ = 'user'
 
-     id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid4)
-     email: Mapped[str] = mapped_column(unique=True, index=True, nullable=False)
-     email_validated: Mapped[bool] = mapped_column(default=False)
-     first_name: Mapped[str] = mapped_column(String(30))
-     last_name: Mapped[str] = mapped_column(String(30))
-     location: Mapped[str] = mapped_column(String(30))
-     is_active: Mapped[bool] = mapped_column(default=True)
-     refresh_tokens: Mapped[list["Token"]] = relationship(
-     foreign_keys="[token.authenticates_id]", back_populates="authenticates", lazy="dynamic"
-     )
-     registered_at: Mapped[str] = mapped_column(default=datetime.now, nullable=False)
-     dogs: Mapped[list["Dog"]] = mapped_column(ForeignKey("dog.id"))
+    id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid4)
+    email = Column(String(255), unique=True, index=True, nullable=False)
+    first_name = Column(String(30), nullable=False)
+    last_name = Column(String(30), nullable=False)
+    location = Column(String(100), nullable=False)
+    is_premium = Column(Boolean, default=False)
 
+    dogs = relationship("Dog", back_populates="owner")
+    feed_filter = relationship("Feed", back_populates="user", uselist=False)
 
 class Dog(Base):
-     __tablename__ = 'dog'
+    __tablename__ = 'dog'
 
-     id: Mapped[int] = mapped_column(primary_key=True)
-     name: Mapped[str] = mapped_column(String(30))
-     photo_url: Mapped[str] = mapped_column(String(100), nullable=False)
-     is_male: Mapped[bool] = mapped_column(nullable=False)
-     age: Mapped[int] = mapped_column(nullable=False)
-     breed: Mapped[str] = mapped_column(String(30), nullable=False)
-     tags: Mapped[list[str]] = mapped_column(String(30), nullable=True)
-     description: Mapped[str] = mapped_column(String(500), nullable=True)
-     is_premium: Mapped[bool] = mapped_column(default=False)
+    id = Column(Integer, primary_key=True)
+    name = Column(String(30), nullable=False)
+    photo_url = Column(String(100), nullable=False)
+    sex = Column(String(50), nullable=False) 
+    age = Column(Integer, nullable=False)
+    breed = Column(String(50), nullable=False)
+    tags = Column(ARRAY(String), nullable=True)
+    description = Column(String(500), nullable=True)
+    is_premium = Column(Boolean, ForeignKey('user.is_premium'))
 
+    owner_id = Column(UUID(as_uuid=True), ForeignKey('user.id'))
+    owner = relationship("User", back_populates="dogs")
 
-class Token(Base):                                                                                                                                                                                                     
-     __tablename__ = 'token'
+class Feed(Base):
+    __tablename__ = 'feed'
+    id = Column(Integer, primary_key=True)
+    current_filter = Column(JSON, nullable=True)
+    current_card = Column(Integer, default=0)
+    history = Column(ARRAY(Integer), nullable=True)
 
-     token: Mapped[str] = mapped_column(primary_key=True, index=True)
-     authenticates_id: Mapped[UUID] = mapped_column(UUID(as_uuid=True), ForeignKey("user.id"))
-     authenticates: Mapped["User"] = relationship(back_populates="refresh_tokens")
+    user_id = Column(UUID(as_uuid=True), ForeignKey('user.id'))
+    user = relationship("User", back_populates="feed_filter")

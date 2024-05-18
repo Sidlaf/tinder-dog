@@ -1,43 +1,36 @@
-from fastapi import APIRouter, Depends, UploadFile
-from services.profile import ProfileService
-from schemas.user import UserCreate
+from fastapi import APIRouter, Depends, UploadFile, File, status
 from services.deps import get_current_user
-from schemas.user import UserCreate, User
 from schemas.dog import Dog, DogCreate
+from schemas.user import User
+from typing import Optional
 
 router = APIRouter(
     prefix='/dog',
-    tags=['Анкета'],
+    tags=['Анкета питомца'],
     )
 
-@router.get('/{id}', response_model=Dog)
-def get_dog_info(
-    user: User = Depends(get_current_user),
-):
-    pass
-
-@router.post('/', response_model=DogCreate)
+@router.post('/', response_model=Dog, status_code=status.HTTP_201_CREATED)
 def create_dog(
-    user: User = Depends(get_current_user),
-):
+    dog_data: DogCreate,
+    photo_file: UploadFile,
+    user: User = Depends(get_current_user)):
     pass
 
-@router.put('/{id}', response_model=Dog)
-def update_dog_info(
-    user: User = Depends(get_current_user),
-):
+@router.get('/id{id}', response_model=Dog)
+def get_dog_info(
+    id: int,
+    user: User = Depends(get_current_user)):
     pass
 
-@router.delete('/{id}', response_model=Dog)
+@router.put('/id{id}', response_model=Dog)
+def update_dog(
+    id: int,
+    photo_file: Optional[UploadFile] = File(default=None),
+    user: User = Depends(get_current_user)):
+    pass
+
+@router.delete('/id{id}', status_code=status.HTTP_204_NO_CONTENT)
 def delete_dog(
-    user: User = Depends(get_current_user),):
+    id: int,
+    user: User = Depends(get_current_user)):
     pass
-
-
-
-# @router.post('/create', status_code=201)
-# def add_photos(
-#     file: UploadFile,
-#     profile_service: ProfileService = Depends()
-# ):
-#     return profile_service.upload_photo(file)

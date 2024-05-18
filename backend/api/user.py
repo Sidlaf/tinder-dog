@@ -1,28 +1,26 @@
-from fastapi import APIRouter, Depends, UploadFile
-from services.profile import ProfileService
-from schemas.user import UserCreate
+from fastapi import APIRouter, Depends, status
 from services.deps import get_current_user
-from schemas.user import UserCreate, User
+from schemas.user import UserCreate, UserUpdate, User
+
 
 router = APIRouter(
     prefix='/user',
-    tags=['Профиль'],
+    tags=['Профиль пользователя'],
     )
 
 @router.get('/', response_model=User)
-def get_information(
-    user: User = Depends(get_current_user),
-):
+def create_profile(
+    user_data: UserCreate,
+    user: User = Depends(get_current_user)):
     pass
 
 @router.put('/', response_model=User)
-def update_information(
-    user: User = Depends(get_current_user),
-):
+def update_profile(
+    user_data: UserUpdate,
+    user: User = Depends(get_current_user)):
     pass
 
-@router.delete('/', response_model=User)
+@router.delete('/', response_model=User) # status_code=status.HTTP_204_NO_CONTENT)
 def delete_profile(
-    user: User = Depends(get_current_user),
-):
+    user: User = Depends(get_current_user)):
     pass
