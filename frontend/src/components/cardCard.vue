@@ -22,6 +22,14 @@ export default {
       type: String,
       required: true
     }
+  },
+  computed: {
+    genderStyle() {
+      if (this.Gender == 'male') {
+        return './../assets/male.svg'
+      }
+      return './../assets/male.svg'
+    }
   }
 }
 </script>
@@ -35,6 +43,7 @@ export default {
             {{ Name }}
           </p>
           <p style="font-size: 20px; color: white">{{ Age }}</p>
+          <img src="./../assets/male.svg" alt="gender" style="margin-left: 8px" />
         </div>
         <p style="font-size: 16px; color: white; margin-bottom: 8px">{{ Description }}</p>
         <div class="tags">
