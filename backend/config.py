@@ -14,7 +14,8 @@ SERVER_PORT = 8000
 #token
 ACCESS_TOKEN_EXPIRE_SECONDS: int = 60 * 30
 REFRESH_TOKEN_EXPIRE_SECONDS: int = 60 * 60 * 24 * 30
-SECRET_KEY = str = secrets.token_urlsafe(32)
+# SECRET_KEY = str = secrets.token_urlsafe(32)
+SECRET_KEY = "tusur"
 JWT_ALGORITHM = "HS256"
 
 #PostgreSQL

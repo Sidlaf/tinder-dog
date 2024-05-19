@@ -11,7 +11,7 @@ from schemas.token import MagicTokenPayload
 import config
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"/login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 def get_magic_token(token: Annotated[str, Depends(oauth2_scheme)]) -> MagicTokenPayload:
     try:

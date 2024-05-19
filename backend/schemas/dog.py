@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 from enum import Enum
 
@@ -8,15 +8,19 @@ class DogCreate(BaseModel):
     sex: str
     age: int
     breed: str
-    tags: Optional[list[str]]
-    description: Optional[str]
+    tags: Optional[str] = Field(None)
+    description: Optional[str] = Field(None)
 
 class DogUpdate(DogCreate):
-    pass
+    name: Optional[str] = Field(None)
+    sex: Optional[str] = Field(None)
+    age: Optional[str] = Field(None)
+    breed: Optional[str] = Field(None)
 
 class Dog(DogCreate):
     photo_url: str
     is_premium: bool
+    id: int
 
 class Tag(str, Enum):
     PASSPORT = "Паспорт"

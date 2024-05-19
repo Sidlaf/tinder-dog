@@ -1,14 +1,20 @@
 from typing import Optional
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field, json
 
+class BaseUser(BaseModel):
+    email: EmailStr
+    password: str
+    password_confirmation: str
 
 class UserCreate(BaseModel):
     first_name: str
     last_name: str
     location: str
 
-class UserUpdate(UserCreate):
-    pass
+class UserUpdate(BaseModel):
+    first_name: Optional[str] = Field(None)
+    last_name: Optional[str] = Field(None)
+    location: Optional[str] = Field(None)
 
 class User(UserCreate):
     email: EmailStr

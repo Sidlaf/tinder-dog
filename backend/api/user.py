@@ -1,26 +1,39 @@
 from fastapi import APIRouter, Depends, status
-from services.deps import get_current_user
+from services.auth_service import get_current_user
+from services.user import UserService
 from schemas.user import UserCreate, UserUpdate, User
+from database import tables
 
+from typing import Optional
 
 router = APIRouter(
     prefix='/user',
     tags=['Профиль пользователя'],
     )
 
-@router.get('/', response_model=User)
+@router.get('/me')
+def get_profile(
+    user_service: UserService = Depends(),
+    user: tables.User = Depends(get_current_user)):
+    return user_service.get_profile(user)
+
+@router.post('/create')
 def create_profile(
-    user_data: UserCreate,
-    user: User = Depends(get_current_user)):
-    pass
+    user_data: UserCreate = Depends(),
+    user_service: UserService = Depends(),
+    user: tables.User = Depends(get_current_user)):
+    return user_service.create_profile(user_data, user)
 
-@router.put('/', response_model=User)
+@router.put('/update')
 def update_profile(
-    user_data: UserUpdate,
-    user: User = Depends(get_current_user)):
-    pass
+    user_data: UserUpdate = Depends(),
+    user_service: UserService = Depends(),
+    user: tables.User = Depends(get_current_user)):
+    return user_service.update_profile(user_data, user)
 
-@router.delete('/', response_model=User) # status_code=status.HTTP_204_NO_CONTENT)
+@router.delete('/delete', status_code=status.HTTP_204_NO_CONTENT)
 def delete_profile(
-    user: User = Depends(get_current_user)):
-    pass
+    user_service: UserService = Depends(),
+    user: tables.User = Depends(get_current_user)):
+    return user_service.delete_profile(user)
+

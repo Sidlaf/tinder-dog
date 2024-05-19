@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, UploadFile
 from services import email_service
 from fastapi_filter import FilterDepends
 from services.feed import DogFilter
@@ -9,11 +9,25 @@ from sqlalchemy import select
 from schemas.dog import Dog
 import json
 
+from services.auth_service import get_current_user
+from services.profile import DogService
+from schemas.user import  User
 
 router = APIRouter(
     prefix='/tester',
     tags=['Проверка'],
     )
+
+@router.get('/me')
+def get_user(
+    user: str = Depends(get_current_user)):
+    return user
+
+@router.post('/photo')
+def test_photo_upload(
+    photo_file: UploadFile,
+    photo_service: DogService = Depends()):
+    return photo_service.test_photo_upload(photo_file)
 
 @router.get('/feed', response_model=list[Dog])
 def list_dog(dog_filters: DogFilter = FilterDepends(DogFilter), 

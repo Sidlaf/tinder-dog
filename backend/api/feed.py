@@ -1,11 +1,12 @@
 from fastapi import APIRouter, Depends
-from services.deps import get_current_user
+from services.auth_service import get_current_user
 from schemas.user import  User
 from schemas.dog import Dog
 from fastapi_filter import FilterDepends
 
 
 from services.feed import DogFilter
+from services.filter import FilterService
 from database.db import get_session
 from sqlalchemy.orm import Session
 from database import tables
@@ -17,20 +18,32 @@ router = APIRouter(
     tags=['Лента анкет'],
     )
 
-@router.get('/test', response_model=list[Dog])
-def list_dog(dog_filters: DogFilter = FilterDepends(DogFilter), 
-    session: Session = Depends(get_session)):
+@router.get('/test')
+def list_dog(
+        dog_filters: DogFilter = FilterDepends(DogFilter), 
+        session: Session = Depends(get_session)):
     query = dog_filters.filter(select(tables.Dog).outerjoin(tables.User))
-    model = dog_filters.model_dump_json()
+    print(query)
+    model = dog_filters.model_dump()
+    print(model)
     a = DogFilter(**json.loads(model))
     query1 = a.filter(select(tables.Dog).outerjoin(tables.User))
-    result = session.execute(query1)
+    result = session.execute(query)
+    # print(result)
     return result.scalars().all()
 
-@router.get('/', response_model=Dog)
-def get_card(
+@router.get('/all', response_model=list[Dog])
+def get_all_cards(
+    filter_service: FilterService = Depends(),
     user: User = Depends(get_current_user)):
-    pass
+    return filter_service.get_all_cards(user)
+
+@router.get('/')
+def get_next_card(
+    filter_service: FilterService = Depends(),
+    user: User = Depends(get_current_user)):
+    return filter_service.get_next_card(user)
+
 
 @router.get('/dislike')
 def dislike_card(
@@ -42,11 +55,12 @@ def like_card(
     user: User = Depends(get_current_user)):
     pass
 
-@router.post('/filter')
+@router.post('/set_filter')
 def set_filter(
     user: User = Depends(get_current_user),
+    filter_service: FilterService = Depends(),
     dog_filter: DogFilter = FilterDepends(DogFilter)):
-    pass
+    return filter_service.set_filter(user, dog_filter)
 
 
 # @router.get('/')

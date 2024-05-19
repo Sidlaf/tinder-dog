@@ -23,6 +23,7 @@ class UserFilter(Filter):
 class DogFilter(Filter):
     age__in: Optional[list[int]] = Field(None, alias='age__in')
     breed: Optional[Breed] = Field(None, alias='breed')
+    sex:  Optional[str] = Field(None, alias='sex')
     user: Optional[UserFilter] = FilterDepends(with_prefix("user", UserFilter))
 
     class Constants(Filter.Constants):
