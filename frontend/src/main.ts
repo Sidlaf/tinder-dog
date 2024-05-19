@@ -3,6 +3,7 @@ import FeedPage from './pages/FeedPage.vue'
 import NewDog from './pages/NewDog.vue'
 import PageProfile from './pages/PageProfile.vue'
 import NewProfile from './pages/NewProfile.vue'
+import AboutUs from './pages/AboutUs.vue'
 import App from './App.vue'
 
 //import router from './router.js'
@@ -12,7 +13,8 @@ const routes = [
   { path: '/', component: FeedPage },
   { path: '/newdog', component: NewDog },
   { path: '/newprofile', component: NewProfile },
-  { path: '/profile', component: PageProfile }
+  { path: '/profile', component: PageProfile },
+  { path: '/aboutus', component: AboutUs }
 ]
 
 const router = createRouter({

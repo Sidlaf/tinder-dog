@@ -67,9 +67,7 @@ const selected = ref('')
 .page-profile{
     margin-top: 0;
 }
-.backBtn{
-    margin-top: 300px;
-}
+
 .container{
     font-family: 'Jost', sans-serif;
     display: flex;
