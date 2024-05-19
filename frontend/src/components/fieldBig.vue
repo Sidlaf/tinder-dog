@@ -1,36 +1,20 @@
 <script>
 export default {
-  name: 'fieldOpen',
+  name: 'fieldBig',
   props: {
     name: {
       type: String,
       required: true
-    },
-    text: {
-      type: String,
-      required: true
-    },
-    width: {
-      type: String,
-      required: false
-    }
-  },
-  computed: {
-    selectStyle() {
-      if (this.width == null) {
-        return ''
-      }
-      return 'width: ' + this.width
     }
   }
 }
 </script>
 
 <template>
-  <div>
+  <div style="margin-bottom: 16px">
     <p style="margin-top: 12px; margin-bottom: 5px">{{ name }}</p>
-    <div class="fieldBack">
-      <input class="inputDogName" type="text" :placeholder="text" :style="selectStyle" />
+    <div class="fieldBigBack">
+      <textarea class="inputDescr" v-model="message" placeholder="Введите описание"></textarea>
       <svg
         width="24"
         height="22"
@@ -65,9 +49,9 @@ export default {
 </template>
 
 <style>
-.fieldBack {
+.fieldBigBack {
   background-color: white;
-  width: fit-conten t;
+  width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,14 +61,16 @@ export default {
   border-color: black;
   border-radius: 10px;
 }
-
-.inputDogName {
+.inputDescr {
   width: 280px;
-  height: 40px;
+  height: 100px;
+  max-width: 280px;
+  min-width: 280px;
   border-width: 0px;
-  font-weight: bold;
+  max-height: 140px;
+  min-height: 40px;
 }
-.inputDogName:focus {
+.inputDescr:focus {
   outline: none;
 }
 </style>

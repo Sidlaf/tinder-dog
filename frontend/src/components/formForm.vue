@@ -1,8 +1,9 @@
 <script>
 import fieldWrite from './fieldWrite.vue'
 import fieldOpen from './fieldOpen.vue'
+import fieldBig from './fieldBig.vue'
 export default {
-  components: { fieldWrite, fieldOpen }
+  components: { fieldWrite, fieldOpen, fieldBig }
 }
 </script>
 <template>
@@ -21,6 +22,7 @@ export default {
       </div>
       <fieldWrite text="Введите породу" name="Порода"></fieldWrite>
       <fieldOpen mini="Выберите тэг" name="Тэги" :items="['Тег1', 'Тег2', 'Тег3']"></fieldOpen>
+      <fieldBig name="Описание"></fieldBig>
     </form>
   </div>
 </template>
@@ -35,6 +37,9 @@ export default {
   display: flex;
   justify-content: center;
   width: 360px;
-  height: 657px;
+  height: fit-content;
+  border-color: black;
+  border: 1px solid;
+  border-radius: 10px;
 }
 </style>
