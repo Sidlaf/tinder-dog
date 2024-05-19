@@ -5,22 +5,21 @@ import PageProfile from './pages/PageProfile.vue'
 import NewProfile from './pages/NewProfile.vue'
 import App from './App.vue'
 
-// import router from './router.js'
-import { createMemoryHistory, createRouter } from 'vue-router'
+//import router from './router.js'
+import { createWebHistory, createRouter } from 'vue-router'
 
 const routes = [
   { path: '/', component: FeedPage },
   { path: '/newdog', component: NewDog },
-  { path: '/newProfile', component: NewProfile },
+  { path: '/newprofile', component: NewProfile },
   { path: '/profile', component: PageProfile }
 ]
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes
 })
 
-const app = createApp(App)
-app.use(router)
-app.mount('#app')
+createApp(App).use(router).mount('#app');
+
 import './assets/style.css'
