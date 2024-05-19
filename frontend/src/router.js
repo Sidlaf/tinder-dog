@@ -7,9 +7,9 @@ import NewDog from './pages/NewDog.vue'
 export default createRouter({
   history: createWebHashHistory(),
   routes: [
-    { path: '/Feed', component: FeedPage },
-    { path: '/PageProfile', component: PageProfile },
-    { path: '/NewProfile', component: NewProfile },
-    { path: '/NewDog', component: NewDog }
+    { path: '/feed', component: FeedPage },
+    { path: '/pageprofile', component: PageProfile },
+    { path: '/newprofile', component: NewProfile },
+    { path: '/newdog', component: NewDog }
   ]
 })

@@ -5,9 +5,12 @@
     <RouterLink to="/">Go to Home</RouterLink>
     <RouterLink to="/newdog">Go to About</RouterLink>
   </nav> -->
-  <main>
+  <!-- <main>
     <RouterView />
-  </main>
+  </main> -->
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <style></style>

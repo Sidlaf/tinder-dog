@@ -1,9 +1,16 @@
+<script>
+import upperPanel from '@/components/upperPanel.vue'
+import backBtn from '@/components/goBackButton.vue'
+export default {
+  components: { upperPanel, backBtn }
+}
+</script>
+
 <template>
   <div class="page-profile">
-    <button class="btn-go" @click="goBack">
-      <img class="arrow" src="./../assets/arrow.svg" alt="стрелка" />
-      Вернуться на главную
-    </button>
+    <upperPanel></upperPanel>
+        <backBtn></backBtn>
+ 
     <div class="container">
       <form class="own-data">
         <h2 class="title-container">Личные данные</h2>
@@ -12,7 +19,12 @@
         <p class="heading">Фамилия</p>
         <input class="input" type="text" placeholder="Введите фамилию" />
         <p class="heading">Город</p>
-        <input class="input" type="text" placeholder="Выберите город" />
+                <select class="input--select" v-model="selected">
+                    <option disabled value="">Выберите город</option>
+                    <option>Томск</option>
+                    <option>Новосибирск</option>
+                    <option>Красноярск</option>
+                </select>
         <p class="heading">Email</p>
         <input class="input" type="text" placeholder="Введите электронную почту" />
         <button class="btn" @click="createAccount">Удалить аккаунт</button>
@@ -30,6 +42,8 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+const selected = ref('')
 // export default{
 //     data(){
 //         return{
@@ -92,7 +106,14 @@
   font-size: 16px;
   background: url('./../assets/pencil.svg') no-repeat 320px white;
 }
-
+.input--select{
+    width: 368px;
+    height: 48px;
+    border-radius: 7px;
+    border-color: 1px #5B5B5B;
+    padding: 10px;
+    font-size: 16px;
+}
 .btn {
   font-family: 'Jost', sans-serif;
   width: 368px;

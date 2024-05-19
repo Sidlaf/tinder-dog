@@ -1,10 +1,15 @@
+<script>
+import upperPanel from '@/components/upperPanel.vue'
+import backBtn from '@/components/goBackButton.vue'
+export default {
+  components: { upperPanel, backBtn }
+}
+</script>
 
 <template> 
     <div class="page-profile">
-        <button class="btn-go" @click="goBack">
-            <img class="arrow" src="./../assets/arrow.svg" alt="стрелка">
-            Вернуться на главную
-            </button>
+        <upperPanel></upperPanel>
+        <backBtn></backBtn>
         <div class="container">
             <form class="own-data">
                 <h2 class="title-container">Личные данные</h2>
@@ -60,7 +65,10 @@ const selected = ref('')
     box-sizing: border-box;
 }
 .page-profile{
-    margin-top: 80px;
+    margin-top: 0;
+}
+.backBtn{
+    margin-top: 300px;
 }
 .container{
     font-family: 'Jost', sans-serif;
