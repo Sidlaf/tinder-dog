@@ -12,7 +12,7 @@ export default {
 
 <template>
   <div style="margin-bottom: 16px">
-    <p style="margin-top: 12px; margin-bottom: 5px">{{ name }}</p>
+    <p style="margin-top: 14px; margin-bottom: 8px; font-size: 18px">{{ name }}</p>
     <div class="fieldBigBack">
       <textarea class="inputDescr" v-model="message" placeholder="Введите описание"></textarea>
       <svg
@@ -57,18 +57,20 @@ export default {
   align-items: center;
   padding-left: 10px;
   padding-right: 10px;
-  border: 2px solid;
+  border: 1px solid;
   border-color: black;
   border-radius: 10px;
 }
 .inputDescr {
-  width: 280px;
-  height: 100px;
-  max-width: 280px;
-  min-width: 280px;
+  width: 250px;
+  height: 140px;
+  max-width: 250px;
+  min-width: 250px;
   border-width: 0px;
   max-height: 140px;
-  min-height: 40px;
+  min-height: 140px;
+  font-weight: 500;
+  font-size: 18px;
 }
 .inputDescr:focus {
   outline: none;

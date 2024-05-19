@@ -28,7 +28,7 @@ export default {
 
 <template>
   <div>
-    <p style="margin-top: 12px; margin-bottom: 5px">{{ name }}</p>
+    <p style="margin-top: 14px; margin-bottom: 8px; font-size: 18px">{{ name }}</p>
     <div class="fieldBack">
       <input class="inputDogName" type="text" :placeholder="text" :style="selectStyle" />
       <svg
@@ -73,16 +73,17 @@ export default {
   align-items: center;
   padding-left: 10px;
   padding-right: 10px;
-  border: 2px solid;
+  border: 1px solid;
   border-color: black;
   border-radius: 10px;
 }
 
 .inputDogName {
-  width: 280px;
+  width: 250px;
   height: 40px;
   border-width: 0px;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 18px;
 }
 .inputDogName:focus {
   outline: none;

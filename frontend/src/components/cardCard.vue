@@ -1,7 +1,29 @@
-<script></script>
+<script>
+export default {
+  name: 'cardCard',
+  props: {
+    width: {
+      type: String,
+      required: false
+    },
+    height: {
+      type: String,
+      required: false
+    }
+  },
+  computed: {
+    selectStyle() {
+      if (this.width == null && this.height == null) {
+        return ''
+      }
+      return 'width: ' + this.width + '; ' + 'height: ' + this.height
+    }
+  }
+}
+</script>
 
 <template>
-  <div class="card"></div>
+  <div class="card" :style="selectStyle"></div>
 </template>
 
 <style>

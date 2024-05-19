@@ -37,7 +37,7 @@ export default {
 
 <template>
   <div>
-    <p style="margin-top: 12px; margin-bottom: 5px">{{ name }}</p>
+    <p style="margin-top: 14px; margin-bottom: 8px; font-size: 18px">{{ name }}</p>
     <div class="fieldBack">
       <select class="asdf" v-model="selected" :style="selectStyle">
         <option value="" disabled selected hidden>{{ mini }}</option>
@@ -49,11 +49,11 @@ export default {
 
 <style>
 .asdf {
-  width: 304px;
+  width: 274px;
   height: 40px;
   border-width: 0px;
   background-color: white;
-
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 18px;
 }
 </style>

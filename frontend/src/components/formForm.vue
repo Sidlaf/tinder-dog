@@ -36,7 +36,7 @@ export default {
   background-color: #e2d1fd;
   display: flex;
   justify-content: center;
-  width: 360px;
+  width: 330px;
   height: fit-content;
   border-color: black;
   border: 1px solid;
