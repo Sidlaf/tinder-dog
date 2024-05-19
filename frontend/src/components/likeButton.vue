@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="backBtn">
+  <div class="likeButton-backBtn">
     <button class="roundBtn">
       <svg
         width="32"
@@ -41,10 +41,9 @@
 </template>
 
 <style>
-.backBtn {
+.likeButton-backBtn {
   width: 100%;
   display: flex;
-  margin-top: 10px;
   justify-content: center;
   align-items: center;
 }
