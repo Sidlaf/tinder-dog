@@ -1,14 +1,14 @@
 <script>
-import cardCard from './cardCard.vue'
+import cardNewDog from './cardNewDog.vue'
 import visionBox from './visionBox.vue'
 export default {
-  components: { cardCard, visionBox }
+  components: { cardNewDog, visionBox }
 }
 </script>
 
 <template>
   <div class="CVBack">
-    <cardCard width="330px" height="480px"></cardCard>
+    <cardNewDog></cardNewDog>
     <visionBox></visionBox>
   </div>
 </template>

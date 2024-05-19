@@ -9,7 +9,13 @@ export default {
 <template>
   <div class="backCard">
     <filterCard></filterCard>
-    <cardCard></cardCard>
+    <cardCard
+      Name="Майло"
+      Age="5 лет"
+      Gender="male"
+      Description="Мощное телосложение"
+      Tag="есть паспорт"
+    ></cardCard>
     <filterCard style="visibility: hidden"></filterCard>
   </div>
 </template>
