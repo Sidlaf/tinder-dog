@@ -1,5 +1,5 @@
 <template>
-  <button class="btn-go" @click="goBack">
+  <button class="btn-go" >
     <img class="arrow" src="./../assets/arrow.svg" alt="стрелка" />
     Вернуться на главную
   </button>

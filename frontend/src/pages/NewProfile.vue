@@ -2,7 +2,12 @@
 import upperPanel from '@/components/upperPanel.vue'
 import backBtn from '@/components/goBackButton.vue'
 export default {
-  components: { upperPanel, backBtn }
+  components: { upperPanel, backBtn },
+  methods: {
+    createForm(){
+      this.$router.push('/NewDog')
+    }
+  }
 }
 </script>
 
