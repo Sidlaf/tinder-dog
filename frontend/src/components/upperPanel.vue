@@ -10,6 +10,10 @@ export default {
     goProfile(){
       this.$router.push('/NewProfile')
     },
+    goPremium(){
+      this.$router.push('/PremiumPage')
+
+    }
   }
 }
 </script>
