@@ -27,13 +27,15 @@ export default {
     box-sizing: border-box;
 } 
 .page_aboutus{
-    background-image: url(./../assets/fon.png);
+    /* background-image: url(./../assets/fon.png);
     background-size: cover;
-    height: 1080px;
-    width: 1920px;
-
+    width: 100%;
+    margin-top: 100px; */
 }
 .abou-us{
+    background-image: url(./../assets/fon.png);
+    background-size: cover;
+    height: 760px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +43,7 @@ export default {
 }
 .title{
     font-size: 36px;
-    margin-top: 100px;
+    margin-top: 200px;
     margin-bottom: 56px;
 
 }

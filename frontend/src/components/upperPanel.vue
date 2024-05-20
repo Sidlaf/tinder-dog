@@ -2,7 +2,15 @@
 import panelButton from './panelButton.vue'
 import logoButton from './logoButton.vue'
 export default {
-  components: { panelButton, logoButton }
+  components: { panelButton, logoButton },
+  methods: {
+    goAboutUs(){
+      this.$router.push('/aboutus')
+    },
+    goProfile(){
+      this.$router.push('/NewProfile')
+    },
+  }
 }
 </script>
 
@@ -10,10 +18,10 @@ export default {
   <div class="panel">
     <logoButton class="logo"></logoButton>
     <div class="btns">
-      <panelButton text="О нас"></panelButton>
-      <panelButton text="Премиум"></panelButton>
-      <panelButton text="Профиль"></panelButton>
-      <panelButton text="Выйти"></panelButton>
+      <panelButton text="О нас" @click="goAboutUs"></panelButton>
+      <panelButton text="Премиум" @click="goPremium"></panelButton>
+      <panelButton text="Профиль" @click="goProfile"></panelButton>
+      <panelButton text="Выйти" @click="goExit"></panelButton>
     </div>
   </div>
 </template>
