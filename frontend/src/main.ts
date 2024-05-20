@@ -4,6 +4,7 @@ import NewDog from './pages/NewDog.vue'
 import PageProfile from './pages/PageProfile.vue'
 import NewProfile from './pages/NewProfile.vue'
 import AboutUs from './pages/AboutUs.vue'
+import EditDog from './pages/EditDog.vue'
 import App from './App.vue'
 
 //import router from './router.js'
@@ -14,7 +15,8 @@ const routes = [
   { path: '/newdog', component: NewDog },
   { path: '/newprofile', component: NewProfile },
   { path: '/profile', component: PageProfile },
-  { path: '/aboutus', component: AboutUs }
+  { path: '/aboutus', component: AboutUs },
+  { path: '/editdog', component: EditDog }
 ]
 
 const router = createRouter({
