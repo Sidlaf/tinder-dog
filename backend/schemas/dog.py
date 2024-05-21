@@ -16,6 +16,7 @@ class DogUpdate(DogCreate):
     sex: Optional[str] = Field(None)
     age: Optional[str] = Field(None)
     breed: Optional[str] = Field(None)
+    is_visible: Optional[str] = Field(None)
 
 class Dog(DogCreate):
     photo_url: str
@@ -29,6 +30,7 @@ class Tag(str, Enum):
 class Breed(str, Enum):
     AKITA = "Акита"
     HUSKY = "Хаски"
+    LABRADOR = "Лабрадор"
 
 class Sex(str, Enum):
     MALE = "Самец"

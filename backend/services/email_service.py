@@ -45,3 +45,20 @@ def send_magic_login_email(email_to: str, token: str) -> None:
             "link": link,
         },
     )
+
+def send_like_email(email_to: str, contacts: str) -> None:
+    subject = f"Заявка от соискатля"
+    with open(Path(config.EMAIL_TEMPLATES_DIR) / "auth_template.html", encoding="utf-8") as f:
+        template_str = f.read()
+    server_host = config.SERVER_HOST
+    contacts = f"Данные соискателя {contacts}"
+    send_email(
+        email_to=email_to,
+        subject_template=subject,
+        html_template=template_str,
+        environment={
+            "project_name": config.PROJECT_NAME,
+            "valid_minutes": int(config.ACCESS_TOKEN_EXPIRE_SECONDS / 60),
+            "link": contacts,
+        },
+    )

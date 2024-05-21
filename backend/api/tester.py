@@ -29,15 +29,12 @@ def test_photo_upload(
     photo_service: DogService = Depends()):
     return photo_service.test_photo_upload(photo_file)
 
-@router.get('/feed', response_model=list[Dog])
+@router.get('/feed')
 def list_dog(dog_filters: DogFilter = FilterDepends(DogFilter), 
     session: Session = Depends(get_session)):
 
     query = dog_filters.filter(select(tables.Dog).outerjoin(tables.User))
-    model = dog_filters.model_dump_json()
-    a = DogFilter(**json.loads(model))
-    query1 = a.filter(select(tables.Dog).outerjoin(tables.User))
-    result = session.execute(query1)
+    result = session.execute(query)
     return result.scalars().all()
 
 @router.post('/email')
@@ -49,5 +46,4 @@ def post_email(
 @router.post('/premium{email}')
 def give_premium(
     email: str):
-    
     pass

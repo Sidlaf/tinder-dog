@@ -8,6 +8,8 @@ from fastapi import Depends, HTTPException, status
 from sqlalchemy import select
 import json
 
+from services.email_service import send_like_email
+
 class FilterService:
     def __init__(self,session: Session = Depends(get_session)):
         self.session = session
@@ -152,3 +154,32 @@ class FilterService:
         query_feed.history = new_history
         self.session.commit()
         return card
+    
+    def like_card(self, user: tables.User):
+        exception_NO_CONTENT = HTTPException(
+        status_code=status.HTTP_204_NO_CONTENT,
+            detail="No cards",
+            )
+        query_feed = (
+            self.session
+            .query(tables.Feed)
+            .filter(tables.Feed.user_id == user.id)
+            .first()
+        )
+        if not query_feed:
+            raise exception_NO_CONTENT
+        
+        history = query_feed.history.copy()
+        
+        if history:
+            liked_dog_id = history[-1]
+        
+        query_dog = (
+            self.session
+            .query(tables.Dog)
+            .filter(tables.Dog.id == liked_dog_id)
+            .first()
+        )
+        onwer_email = query_dog.owner.email
+        # send_like_email(onwer_email, user.email)
+        return f"email sent to {onwer_email}"
