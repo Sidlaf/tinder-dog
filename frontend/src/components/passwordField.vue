@@ -18,7 +18,7 @@ export default {
   <div>
     <p style="margin-top: 14px; margin-bottom: 8px; font-size: 18px">{{ name }}</p>
     <div class="fieldBack">
-      <input class="inputData" type="text" :placeholder="text" />
+      <input class="inputData" type="password" :placeholder="text" />
     </div>
   </div>
 </template>

@@ -1,20 +1,54 @@
 <script>
 import inputField from './inputField.vue'
+import passwordField from './passwordField.vue'
+
 export default {
-  components: { inputField }
+  components: { inputField, passwordField },
+  directives: {
+    clickOutside: {
+      mounted: function (element, binding) {
+        element.clickOutsideEvent = function (event) {
+          const excludeComponent = document.getElementById(binding.arg)
+
+          if (
+            !(element == event.target || element.contains(event.target)) &&
+            !(
+              excludeComponent &&
+              (event.target == excludeComponent || excludeComponent.contains(event.target))
+            )
+          ) {
+            binding.value(event, element)
+          }
+        }
+        document.addEventListener('mouseup', element.clickOutsideEvent)
+      },
+      unmounted: function (element) {
+        document.removeEventListener('mouseup', element.clickOutsideEvent)
+      }
+    }
+  },
+  methods: {
+    clickOutside: () => {
+      // TODO: router или закрытие окна
+      document.location.href = '/homepage'
+    },
+    logIn: () => {
+      // TODO: прописать функцию логина
+    }
+  }
 }
 </script>
 
 <template>
   <div class="logIn-back">
-    <div class="logIn-front">
+    <div class="logIn-front" v-click-outside="clickOutside">
       <img
         src=".././assets/logo.svg"
         alt="logo"
         style="width: 76px; height: 72px; margin-top: 21px"
       />
       <inputField text="email@example.com" name="Email"></inputField>
-      <inputField text="example" name="Пароль"></inputField>
+      <passwordField text="" name="Пароль"></passwordField>
       <button class="logIn-create" @click="logIn">Войти</button>
     </div>
   </div>

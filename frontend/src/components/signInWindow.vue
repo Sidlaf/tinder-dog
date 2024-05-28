@@ -1,21 +1,54 @@
 <script>
 import inputField from './inputField.vue'
+import passwordField from './passwordField.vue'
 export default {
-  components: { inputField }
+  components: { inputField, passwordField },
+  directives: {
+    clickOutside: {
+      mounted: function (element, binding) {
+        element.clickOutsideEvent = function (event) {
+          const excludeComponent = document.getElementById(binding.arg)
+
+          if (
+            !(element == event.target || element.contains(event.target)) &&
+            !(
+              excludeComponent &&
+              (event.target == excludeComponent || excludeComponent.contains(event.target))
+            )
+          ) {
+            binding.value(event, element)
+          }
+        }
+        document.addEventListener('mouseup', element.clickOutsideEvent)
+      },
+      unmounted: function (element) {
+        document.removeEventListener('mouseup', element.clickOutsideEvent)
+      }
+    }
+  },
+  methods: {
+    clickOutside: () => {
+      // TODO: router или закрытие окна
+      document.location.href = '/homepage'
+    },
+    signIn() {
+      // TODO: прописать функцию signIn
+    }
+  }
 }
 </script>
 
 <template>
   <div class="signIn-back">
-    <div class="signIn-front">
+    <div class="signIn-front" v-click-outside="clickOutside">
       <img
         src=".././assets/logo.svg"
         alt="logo"
         style="width: 76px; height: 72px; margin-top: 21px"
       />
       <inputField text="email@example.com" name="Email"></inputField>
-      <inputField text="example" name="Пароль"></inputField>
-      <inputField text="example" name="Повторите пароль"></inputField>
+      <passwordField text="" name="Пароль"></passwordField>
+      <passwordField text="" name="Повторите пароль"></passwordField>
       <button class="signIn-create" @click="signIn">Создать аккаунт</button>
     </div>
   </div>
@@ -25,7 +58,7 @@ export default {
 .signIn-back {
   width: 100vw;
   height: 56vw;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.15);

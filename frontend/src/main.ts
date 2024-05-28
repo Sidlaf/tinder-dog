@@ -7,6 +7,8 @@ import AboutUs from './pages/AboutUs.vue'
 import EditDog from './pages/EditDog.vue'
 import PremiumPage from './pages/PremiumPage.vue'
 import HomePage from './pages/HomePage.vue'
+import SignInPage from './pages/SignInPage.vue'
+import LogInPage from './pages/LogInPage.vue'
 import App from './App.vue'
 
 //import router from './router.js'
@@ -20,7 +22,9 @@ const routes = [
   { path: '/aboutus', component: AboutUs },
   { path: '/editdog', component: EditDog },
   { path: '/premiumpage', component: PremiumPage },
-  { path: '/homepage', component: HomePage }
+  { path: '/homepage', component: HomePage },
+  { path: '/signin', component: SignInPage },
+  { path: '/login', component: LogInPage }
 ]
 
 const router = createRouter({

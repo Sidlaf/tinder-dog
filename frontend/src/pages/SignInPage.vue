@@ -1,23 +1,14 @@
 <script>
 import upperPanelPre from '@/components/upperPanelPre.vue'
 import gavLogo from '@/components/gavLogo.vue'
-import { createApp } from 'vue'
-// import signInWindow from '../components/signInWindow.vue'
-// import logInWindow from '../components/logInWindow.vue'
+import signInWindow from '../components/signInWindow.vue'
 export default {
-  components: { upperPanelPre, gavLogo },
-  methods: {
-    createAcc() {
-      this.$router.push('/signIn')
-    },
-    signIn() {
-      // TODO: прописать функцию signIn
-    }
-  }
+  components: { upperPanelPre, gavLogo, signInWindow }
 }
 </script>
 
 <template>
+  <signInWindow></signInWindow>
   <div class="homePage-div">
     <upperPanelPre></upperPanelPre>
     <div class="homePage-div2">
