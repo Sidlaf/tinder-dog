@@ -1,5 +1,14 @@
+<script>
+export default {
+  methods: {
+    goBack() {
+      this.$router.push('/')
+    }
+  }
+}
+</script>
 <template>
-  <button class="btn-go" >
+  <button class="btn-go" @click="goBack">
     <img class="arrow" src="./../assets/arrow.svg" alt="стрелка" />
     Вернуться на главную
   </button>
