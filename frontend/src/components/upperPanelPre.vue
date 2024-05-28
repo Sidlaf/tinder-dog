@@ -18,19 +18,18 @@ export default {
 </script>
 
 <template>
-  <div class="upperPanel-panel">
+  <div class="upperPanelPre-panel">
     <logoButton class="logo"></logoButton>
-    <div class="upperPanel-btns">
+    <div class="upperPanelPre-btns">
       <panelButton text="О нас" @click="goAboutUs"></panelButton>
       <panelButton text="Премиум" @click="goPremium"></panelButton>
-      <panelButton text="Профиль" @click="goProfile"></panelButton>
-      <panelButton text="Выйти" @click="goExit"></panelButton>
+      <panelButton text="Войти" @click="goExit"></panelButton>
     </div>
   </div>
 </template>
 
 <style scoped>
-.upperPanel-panel {
+.upperPanelPre-panel {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,7 +38,7 @@ export default {
   height: 100px;
 }
 
-.upperPanel-btns {
+.upperPanelPre-btns {
   display: flex;
   align-items: center;
   justify-content: space-between;

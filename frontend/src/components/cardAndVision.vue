@@ -17,6 +17,5 @@ export default {
 .CVBack {
   width: fit-content;
   height: fit-content;
-  margin-right: 100px;
 }
 </style>

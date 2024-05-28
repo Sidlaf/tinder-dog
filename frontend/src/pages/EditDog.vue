@@ -16,13 +16,17 @@ export default {
       <cardAndVision></cardAndVision>
       <formForm></formForm>
     </div>
-    <div class="btns">
-      <button class="btn-delete" @click="deleteForm">Удалить анкету собаки</button>
-      <button class="btn-save" @click="saveForm">Сохранить </button>
-      <button class="btn-back" @click="backForm">Отмена</button>
+    <div class="newDBack" style="margin-top: 32px">
+      <div style="width: 330px">
+        <button class="btn-delete" @click="deleteForm">Удалить анкету собаки</button>
+      </div>
 
+      <div style="width: 330px; display: flex; justify-content: right; gap: 16px">
+        <button class="btn-save" @click="saveForm">Сохранить</button>
+        <button class="btn-back" @click="backForm">Отмена</button>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <style>
@@ -30,14 +34,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.btns{
-  margin-top: 20px;
-  /* display: flex;
   gap: 100px;
-  margin-left: 418px; */
 }
-.btn-delete{
+.btns {
+  margin-top: 20px;
+}
+.btn-delete {
   font-family: 'Jost', sans-serif;
   color: #ffffff;
   background-color: #b393e6;
@@ -46,10 +48,8 @@ export default {
   border: none;
   border-radius: 7px;
   font-size: 24px;
-  margin-left: 418px;
-  margin-right: 138px;
 }
-.btn-save{
+.btn-save {
   font-family: 'Jost', sans-serif;
   color: #ffffff;
   background-color: #b393e6;
@@ -58,9 +58,8 @@ export default {
   border: none;
   border-radius: 7px;
   font-size: 24px;
-  margin-right: 50px;
 }
-.btn-back{
+.btn-back {
   font-family: 'Jost', sans-serif;
   color: #ffffff;
   background-color: #85889e;
