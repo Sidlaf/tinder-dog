@@ -15,7 +15,7 @@ export default {
       />
       <inputField text="email@example.com" name="Email"></inputField>
       <inputField text="example" name="Пароль"></inputField>
-      <button class="logIn-create" @click="createAcc">Войти</button>
+      <button class="logIn-create" @click="logIn">Войти</button>
     </div>
   </div>
 </template>

@@ -16,7 +16,7 @@ export default {
       <inputField text="email@example.com" name="Email"></inputField>
       <inputField text="example" name="Пароль"></inputField>
       <inputField text="example" name="Повторите пароль"></inputField>
-      <button class="signIn-create" @click="createAcc">Создать аккаунт</button>
+      <button class="signIn-create" @click="signIn">Создать аккаунт</button>
     </div>
   </div>
 </template>
