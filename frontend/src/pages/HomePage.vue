@@ -1,12 +1,16 @@
 <script>
 import upperPanelPre from '@/components/upperPanelPre.vue'
 import gavLogo from '@/components/gavLogo.vue'
+import signInWindow from '../components/signInWindow.vue'
+import logInWindow from '../components/logInWindow.vue'
 export default {
-  components: { upperPanelPre, gavLogo }
+  components: { upperPanelPre, gavLogo, signInWindow, logInWindow }
 }
 </script>
 
 <template>
+  <signInWindow></signInWindow>
+  <logInWindow></logInWindow>
   <div class="homePage-div">
     <upperPanelPre></upperPanelPre>
     <div class="homePage-div2">
