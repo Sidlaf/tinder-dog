@@ -12,6 +12,9 @@ export default {
     },
     goPremium() {
       this.$router.push('/PremiumPage')
+    },
+    exit(){
+      this.$router.push('/signin')
     }
   }
 }
@@ -24,7 +27,7 @@ export default {
       <panelButton text="О нас" @click="goAboutUs"></panelButton>
       <panelButton text="Премиум" @click="goPremium"></panelButton>
       <panelButton text="Профиль" @click="goProfile"></panelButton>
-      <panelButton text="Выйти" @click="goExit"></panelButton>
+      <panelButton text="Выйти" @click="exit"></panelButton>
     </div>
   </div>
 </template>
